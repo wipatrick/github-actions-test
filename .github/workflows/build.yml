@@ -38,6 +38,6 @@ jobs:
     - name: Use env variables
       env:
         IMG_TAG: ${{ env.DOCKERHUB_REPO }}/appv1:${{ env.VERSION }}
-        IMG: debian:slim
+        IMG: debian:stretch-slim
       run: |
         docker build --pull --build-arg IMG=$IMG --build-arg MSG="hello-world" -t $IMG_TAG .
