@@ -1,5 +1,5 @@
 ARG IMG=debian
-ARG MSG=test
+ARG QEMU
 FROM ${IMG}
 
-RUN echo "MESSAGE: " $MSG
+COPY ${QEMU} /usr/bin
