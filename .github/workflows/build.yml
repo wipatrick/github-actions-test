@@ -17,7 +17,7 @@ jobs:
         echo test, and deploy your project.
     - name: Set env variables for Docker builds
       run: |
-        echo "::set-env name=VERSION::1.0)"
+        echo "::set-env name=VERSION::1.0"
         echo "::set-env name=DOCKERHUB_REPO::myrepo"
     - name: Use env variables
       env:
