@@ -18,6 +18,7 @@ jobs:
     - name: Docker setup
       run: |
         docker version
+        mkdir $HOME/.docker
         touch $HOME/.docker/config.json
         echo '{"experimental":true}' | $HOME/.docker/config.json
         echo '{"experimental":true}' | sudo tee /etc/docker/daemon.json
