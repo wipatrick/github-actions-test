@@ -21,14 +21,14 @@ jobs:
         echo "::set-env name=DOCKERHUB_REPO::myrepo"
     - name: Use env variables
       env:
-        IMG_TAG: ${{ DOCKERHUB_REPO }}/appv1:${{ VERSION }}
+        IMG_TAG: ${{ env.DOCKERHUB_REPO }}/appv1:${{ env.VERSION }}
       run: |
         echo $DOCKERHUB_REPO
         echo $VERSION
         echo $IMG_TAG
     - name: Use env variables again
       env:
-        IMG_TAG: ${{ DOCKERHUB_REPO }}/appv2:${{ VERSION }}
+        IMG_TAG: ${{ env.DOCKERHUB_REPO }}/appv2:${{ env.VERSION }}
       run: |
         echo $DOCKERHUB_REPO
         echo $VERSION
