@@ -17,12 +17,16 @@ jobs:
         echo test, and deploy your project.
     - name: Docker setup
       run: |
+        docker version
         echo '{"experimental":true}' | sudo tee /etc/docker/daemon.json
         sudo service docker restart
         cat /etc/docker/daemon.json
     - name: Docker version
       run: |
         docker version
+    - name: Docker version
+      run: |
+        docker manifest --help
     - name: Set env variables for Docker builds
       run: |
         echo "::set-env name=VERSION::1.0"
