@@ -1,0 +1,35 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Run a one-line script
+      run: echo Hello, world!
+    - name: Run a multi-line script
+      run: |
+        echo Add other actions to build,
+        echo test, and deploy your project.
+    - name: Set env variables for Docker builds
+      run: |
+        echo "::set-env name=VERSION::1.0)"
+        echo "::set-env name=DOCKERHUB_REPO::myrepo"
+    - name: Use env variables
+      env:
+        IMG_TAG: ${{ DOCKERHUB_REPO }}/appv1:${{ VERSION }}
+      run: |
+        echo $DOCKERHUB_REPO
+        echo $VERSION
+        echo $IMG_TAG
+    - name: Use env variables again
+      env:
+        IMG_TAG: ${{ DOCKERHUB_REPO }}/appv2:${{ VERSION }}
+      run: |
+        echo $DOCKERHUB_REPO
+        echo $VERSION
+        echo $IMG_TAG
