@@ -17,6 +17,8 @@ jobs:
         echo test, and deploy your project.
     - name: Docker version
       run: |
+        echo '{"experimental":true}' | tee /etc/docker/daemon.json
+        systemctl restart docker
         docker version
     - name: Set env variables for Docker builds
       run: |
