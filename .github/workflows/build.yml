@@ -40,4 +40,6 @@ jobs:
         IMG_TAG: ${{ env.DOCKERHUB_REPO }}/appv1:${{ env.VERSION }}
         IMG: debian:stretch-slim
       run: |
-        docker build --pull --build-arg IMG=${{ env.IMG }} --build-arg MSG=hello-world -t ${{ env.IMG_TAG }} .
+        wget https://github.com/multiarch/qemu-user-static/releases/download/v4.0.0/qemu-arm-static
+        chmod 554 qemu-arm-static
+        docker build --pull --build-arg IMG=${{ env.IMG }} --build-arg QEMU=qemu-arm-static -t ${{ env.IMG_TAG }} .
