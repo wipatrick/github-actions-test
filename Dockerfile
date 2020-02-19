@@ -1,5 +1,7 @@
 ARG IMG=debian
-ARG QEMU
-FROM ${IMG}
+FROM $IMG
 
-COPY ${QEMU} /usr/bin
+ARG QEMU
+
+RUN echo $QEMU
+COPY $QEMU /usr/bin
