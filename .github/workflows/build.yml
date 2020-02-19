@@ -15,10 +15,13 @@ jobs:
       run: |
         echo Add other actions to build,
         echo test, and deploy your project.
-    - name: Docker version
+    - name: Docker setup
       run: |
         echo '{"experimental":true}' | sudo tee /etc/docker/daemon.json
-        sudo systemctl restart docker
+        sudo service docker restart
+        cat /etc/docker/daemon.json
+    - name: Docker version
+      run: |
         docker version
     - name: Set env variables for Docker builds
       run: |
