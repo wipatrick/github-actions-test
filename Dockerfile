@@ -1,7 +1,7 @@
 ARG IMG=arm32v7/nginx
 FROM $IMG
 
-ARG QEMU=qemu-arm-static
+ARG QEMU
 
 COPY ${QEMU} /usr/bin
 COPY dist/ /usr/share/nginx/html/
