@@ -40,7 +40,7 @@ jobs:
     - name: build & push docker image
       env:
         IMG_TAG: ${{ env.DOCKERHUB_REPO }}/nginx:${{ env.VERSION }}
-        IMG: arg32v7/nginx
+        IMG: arm32v7/nginx
       run: |
         wget https://github.com/multiarch/qemu-user-static/releases/download/v4.0.0/qemu-arm-static
         chmod 554 qemu-arm-static
