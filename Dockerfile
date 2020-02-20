@@ -1,4 +1,4 @@
-ARG IMG=arg32v7/nginx
+ARG IMG=arm32v7/nginx
 FROM $IMG
 
 ARG QEMU=qemu-arm-static
