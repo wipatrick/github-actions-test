@@ -9,37 +9,37 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Run a one-line script
-      run: echo Hello, world!
-    - name: Run a multi-line script
-      run: |
-        echo Add other actions to build,
-        echo test, and deploy your project.
-    - name: Docker setup
-      # enable experimental feature
-      run: |
-        docker version
-        sudo mkdir $HOME/.docker
-        sudo touch $HOME/.docker/config.json
-        echo '{"experimental": "enabled"}' | sudo tee $HOME/.docker/config.json
-        echo '{"experimental":true}' | sudo tee /etc/docker/daemon.json
-        sudo service docker restart
-        cat /etc/docker/daemon.json
-    - name: Docker version
-      run: |
-        docker version
-    - name: Docker version
-      run: |
-        docker manifest --help
+    # - name: Run a one-line script
+    #   run: echo Hello, world!
+    # - name: Run a multi-line script
+    #   run: |
+    #     echo Add other actions to build,
+    #     echo test, and deploy your project.
+    # - name: Docker setup
+    #   # enable experimental feature
+    #   run: |
+    #     docker version
+    #     sudo mkdir $HOME/.docker
+    #     sudo touch $HOME/.docker/config.json
+    #     echo '{"experimental": "enabled"}' | sudo tee $HOME/.docker/config.json
+    #     echo '{"experimental":true}' | sudo tee /etc/docker/daemon.json
+    #     sudo service docker restart
+    #     cat /etc/docker/daemon.json
+    # - name: Docker version
+    #   run: |
+    #     docker version
+    # - name: Docker version
+    #   run: |
+    #     docker manifest --help
     - name: Set env variables for Docker builds
       run: |
         echo "::set-env name=VERSION::1.0"
         echo "::set-env name=DOCKERHUB_REPO::myrepo"
-    - name: Use env variables
+    - name: build docker image
       env:
-        IMG_TAG: ${{ env.DOCKERHUB_REPO }}/appv1:${{ env.VERSION }}
-        IMG: debian:stretch-slim
+        IMG_TAG: ${{ env.DOCKERHUB_REPO }}/nginx:${{ env.VERSION }}
+        IMG: arg32v7/nginx
       run: |
         wget https://github.com/multiarch/qemu-user-static/releases/download/v4.0.0/qemu-arm-static
         chmod 554 qemu-arm-static
-        docker build --pull --build-arg IMG=$IMG --build-arg QEMU=qemu-arm-static -t $IMG_TAG .
+        docker build --no-cache --pull --build-arg IMG=$IMG --build-arg QEMU=qemu-arm-static -t $IMG_TAG .

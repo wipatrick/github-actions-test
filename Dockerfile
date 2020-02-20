@@ -1,7 +1,11 @@
-ARG IMG=debian
+ARG IMG=arg32v7/nginx
 FROM $IMG
 
-ARG QEMU
+ARG QEMU=qemu-arm-static
 
-RUN echo $QEMU
 COPY $QEMU /usr/bin
+COPY dist/ /usr/share/nginx/html/
+
+RUN chown -R nginx:nginx /usr/share/nginx/html/
+
+CMD ["nginx", "-g", "daemon off;"]
