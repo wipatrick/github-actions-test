@@ -43,7 +43,7 @@ jobs:
         IMG: arm32v7/nginx
       run: |
         sudo apt-get install qemu-user-static
-        wget https://github.com/multiarch/qemu-user-static/releases/download/v4.0.0/qemu-arm-static
-        chmod 554 qemu-arm-static
-        docker build --no-cache --pull --build-arg IMG=$IMG --build-arg QEMU=/usr/bin/qemu-arm-static -t $IMG_TAG .
+        sudo ls -lh /usr/bin
+        sudo cp /usr/bin/qemu-arm-static .
+        docker build --no-cache --pull --build-arg IMG=$IMG -t $IMG_TAG .
         docker push $IMG_TAG
